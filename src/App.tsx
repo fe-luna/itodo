@@ -1,6 +1,11 @@
 
 import Pages from './pages'
-import './App.css';
+import "@aws-amplify/ui-react/styles.css";
+// import {
+//   withAuthenticator,
+//   Button,
+//   View,
+// } from "@aws-amplify/ui-react";
 
 function App() {
   return (
