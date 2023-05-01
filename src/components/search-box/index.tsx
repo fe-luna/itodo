@@ -10,35 +10,24 @@ interface Props {
 }
 
 const SearchBox:  React.FC<Props> = ({ searchQuery, onSearchQueryChange } ) => {
-  const [iconColor, setIconColor] = useState("white")
   const [isFocus, setIsFocus] = useState(false)
   const handleFocus = () => {
     setIsFocus(true)
-    setIconColor("grey")
   }
   const handleNoFocus = () => {
     setIsFocus(false)
-    setIconColor("white")
   }
   const [isHover, setIsHover] = useState(false)
   const handleMouseHover = () => {
     setIsHover(true)
-    setIconColor("grey")
   }
   const handleMouseLeave = () => {
     setIsHover(false)
-    if(isFocus) {
-      setIconColor("grey")
-    } else {
-      setIconColor("white")
-
-    }
-    
   }
-
+  const color = isHover || isFocus ? "grey" : "white"
   return (
     <div className={`${isFocus ? "search-box-focus" : "search-box"}`} onMouseEnter={handleMouseHover} onMouseLeave={handleMouseLeave}>
-      <Icon name="search" color={iconColor} className="search-icon" />
+      <Icon name="search" color={color} className="search-icon" />
       <input
         type="text"
         value={searchQuery}

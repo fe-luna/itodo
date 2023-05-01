@@ -4,8 +4,9 @@ import {
     withAuthenticator,
   } from "@aws-amplify/ui-react";
 import Icon from '../../icons'
-import Sign from '../signin'
 import SearchBox from '../../components/search-box'
+import UserInfoPopup from '../../components/user-info-popup';
+import Sign from '../signin';
 import './style.scss'
 
 function Header() {
@@ -25,9 +26,9 @@ function Header() {
                 <Icon name="efficiency" color="white" />
                 <Icon name="question" color="white" />
                 <Icon name="messages" color="white" />
-                <Sign />  
+                <Sign />
+                <UserInfoPopup />
             </div>
-             
         </div>
     )
 }
