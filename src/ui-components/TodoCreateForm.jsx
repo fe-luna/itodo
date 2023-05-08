@@ -23,20 +23,24 @@ export default function TodoCreateForm(props) {
     ...rest
   } = props;
   const initialValues = {
+    uid: "",
     name: "",
     description: "",
   };
+  const [uid, setUid] = React.useState(initialValues.uid);
   const [name, setName] = React.useState(initialValues.name);
   const [description, setDescription] = React.useState(
     initialValues.description
   );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
+    setUid(initialValues.uid);
     setName(initialValues.name);
     setDescription(initialValues.description);
     setErrors({});
   };
   const validations = {
+    uid: [{ type: "Required" }],
     name: [{ type: "Required" }],
     description: [],
   };
@@ -66,6 +70,7 @@ export default function TodoCreateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
+          uid,
           name,
           description,
         };
@@ -114,6 +119,32 @@ export default function TodoCreateForm(props) {
       {...rest}
     >
       <TextField
+        label="Uid"
+        isRequired={true}
+        isReadOnly={false}
+        value={uid}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              uid: value,
+              name,
+              description,
+            };
+            const result = onChange(modelFields);
+            value = result?.uid ?? value;
+          }
+          if (errors.uid?.hasError) {
+            runValidationTasks("uid", value);
+          }
+          setUid(value);
+        }}
+        onBlur={() => runValidationTasks("uid", uid)}
+        errorMessage={errors.uid?.errorMessage}
+        hasError={errors.uid?.hasError}
+        {...getOverrideProps(overrides, "uid")}
+      ></TextField>
+      <TextField
         label="Name"
         isRequired={true}
         isReadOnly={false}
@@ -122,6 +153,7 @@ export default function TodoCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              uid,
               name: value,
               description,
             };
@@ -147,6 +179,7 @@ export default function TodoCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              uid,
               name,
               description: value,
             };

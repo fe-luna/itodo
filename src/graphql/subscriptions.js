@@ -5,6 +5,7 @@ export const onCreateTodo = /* GraphQL */ `
   subscription OnCreateTodo($filter: ModelSubscriptionTodoFilterInput) {
     onCreateTodo(filter: $filter) {
       id
+      uid
       name
       description
       createdAt
@@ -16,6 +17,7 @@ export const onUpdateTodo = /* GraphQL */ `
   subscription OnUpdateTodo($filter: ModelSubscriptionTodoFilterInput) {
     onUpdateTodo(filter: $filter) {
       id
+      uid
       name
       description
       createdAt
@@ -27,6 +29,7 @@ export const onDeleteTodo = /* GraphQL */ `
   subscription OnDeleteTodo($filter: ModelSubscriptionTodoFilterInput) {
     onDeleteTodo(filter: $filter) {
       id
+      uid
       name
       description
       createdAt

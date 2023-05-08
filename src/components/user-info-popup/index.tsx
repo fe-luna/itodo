@@ -1,23 +1,37 @@
-
-import {useState} from 'react'
-import './style.scss'
+import { useState, useEffect } from "react";
+import { Auth } from "aws-amplify";
+import { useSelector } from "react-redux";
+import "./style.scss";
 function UserInfoPopup() {
-    const [isPop, setIsPop] = useState(false)
-    const handleClick = () => {
-        setIsPop(true)
+  const userName = useSelector((state: any) => state.user.username);
+  const [isPop, setIsPop] = useState(false);
+
+  const [avatarUrl, setAvatarUrl] = useState("");
+
+  useEffect(() => {
+    async function getAvatarUrl() {
+      const user = await Auth.currentAuthenticatedUser();
+      const attributes = await Auth.userAttributes(user);
+      const avatarAttribute = attributes.find(
+        (attr) => attr.Name === "picture"
+      );
+      if (avatarAttribute) {
+        setAvatarUrl(avatarAttribute.Value);
+      }
     }
-    
-    return (
-        <div className="user-info" onClick={handleClick}>
-                <img 
-                    src="https://avatars.doist.com?fullName=Luna&amp;email=feluna.zhang%40gmail.com&amp;size=195&amp;bg=ffffff" 
-                    alt="Luna"
-                    className="user-info-img"
-                >
-                </img>
-                {isPop && <div className="user-info-popup">popup</div>}
-                
-        </div>
-    )
+
+    getAvatarUrl();
+  }, []);
+
+  const handleClick = () => {
+    setIsPop(true);
+  };
+
+  return (
+    <div className="user-info" onClick={handleClick}>
+      <div>{userName}</div>
+      {isPop && <div className="user-info-popup">popup</div>}
+    </div>
+  );
 }
-export default UserInfoPopup
+export default UserInfoPopup;

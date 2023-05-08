@@ -1,15 +1,28 @@
-
-import './style.scss'
+import cx from "classnames";
+import "./style.scss";
 interface Props {
-    type?: string;
-    size?: number;
-    disabled?: boolean;
-    children?: any
+  type?: "default" | "primary" | "dashed" | "text";
+  size?: "small" | "middle" | "large";
+  disabled?: boolean;
+  children?: any;
 }
-const Button: React.FC<Props> = ({type="default", size = 24, disabled = false,children}) => {
-    return (
-        <button style={{width: size, height: size}} className={`${disabled ? "disabled": type}`} disabled={disabled}>{children}</button>
-    )
-}
+const Button: React.FC<Props> = ({
+  type = "default",
+  size = "middle",
+  disabled = false,
+  children,
+}) => {
+  return (
+    <button
+      className={cx({
+        [`button--type-${type}`]: type,
+        [`button--size-${size}`]: size,
+      })}
+      disabled={disabled}
+    >
+      {children}
+    </button>
+  );
+};
 
-export default Button
+export default Button;
