@@ -1,6 +1,7 @@
 import {
   createTodo as createTodoMutation,
   deleteTodo as deleteTodoMutation,
+  updateTodo as updateTodoMutation,
 } from "../graphql/mutations";
 import { API, graphqlOperation } from "aws-amplify";
 import { listTodos } from "../graphql/queries";
@@ -41,4 +42,10 @@ export async function deleteTodo(id: String) {
     },
   });
   console.log("## successful delete");
+}
+
+export async function updateTodo(data: any) {
+  const result = await API.graphql(
+    graphqlOperation(updateTodoMutation, { input: data })
+  );
 }
