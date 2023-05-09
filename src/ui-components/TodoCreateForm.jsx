@@ -40,7 +40,7 @@ export default function TodoCreateForm(props) {
     setErrors({});
   };
   const validations = {
-    uid: [{ type: "Required" }],
+    uid: [],
     name: [{ type: "Required" }],
     description: [],
   };
@@ -120,7 +120,7 @@ export default function TodoCreateForm(props) {
     >
       <TextField
         label="Uid"
-        isRequired={true}
+        isRequired={false}
         isReadOnly={false}
         value={uid}
         onChange={(e) => {

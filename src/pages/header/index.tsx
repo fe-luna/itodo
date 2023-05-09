@@ -2,7 +2,6 @@ import { useState } from "react";
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import Icon from "../../icons";
 import SearchBox from "../../components/search-box";
-import Sign from "../signin";
 import "./style.scss";
 
 function Header() {

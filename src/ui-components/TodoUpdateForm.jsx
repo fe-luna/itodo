@@ -55,7 +55,7 @@ export default function TodoUpdateForm(props) {
   }, [idProp, todoModelProp]);
   React.useEffect(resetStateValues, [todoRecord]);
   const validations = {
-    uid: [{ type: "Required" }],
+    uid: [],
     name: [{ type: "Required" }],
     description: [],
   };
@@ -136,7 +136,7 @@ export default function TodoUpdateForm(props) {
     >
       <TextField
         label="Uid"
-        isRequired={true}
+        isRequired={false}
         isReadOnly={false}
         value={uid}
         onChange={(e) => {

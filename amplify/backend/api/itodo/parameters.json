@@ -1,5 +1,6 @@
 {
   "AppSyncApiName": "itodo",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": false
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2023-05-08T04:25:39.449Z"
 }
