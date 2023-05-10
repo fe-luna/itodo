@@ -1,10 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import Icon from "../../icons";
 import SearchBox from "../../components/search-box";
 import "./style.scss";
 
-function Header() {
+const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const onSearchQueryChange = (e: any) => {
     setSearchQuery(e.target.value);
@@ -28,5 +28,5 @@ function Header() {
       </div>
     </div>
   );
-}
+};
 export default withAuthenticator(Header);
