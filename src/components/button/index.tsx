@@ -5,12 +5,14 @@ interface Props {
   size?: "small" | "middle" | "large";
   disabled?: boolean;
   children?: any;
+  style?: any;
 }
 const Button: React.FC<Props> = ({
   type = "default",
   size = "middle",
   disabled = false,
   children,
+  style,
 }) => {
   return (
     <button
@@ -19,6 +21,7 @@ const Button: React.FC<Props> = ({
         [`button--size-${size}`]: size,
       })}
       disabled={disabled}
+      style={style}
     >
       {children}
     </button>

@@ -1,9 +1,6 @@
 .createTodo {
-  position: fixed;
-  top: 30%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 580px;
-  background-color: #fff;
-  box-shadow: 0 15px 50px 0 rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }

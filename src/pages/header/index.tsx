@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import Icon from "../../icons";
 import SearchBox from "../../components/search-box";
+import CreateTodo from "../create-todo";
 import "./style.scss";
 
 const Header = () => {
@@ -21,7 +22,7 @@ const Header = () => {
         />
       </div>
       <div className="header-right">
-        <Icon name="add" color="primary" />
+        <CreateTodo />
         <Icon name="efficiency" color="primary" />
         <Icon name="question" color="primary" />
         <Icon name="messages" color="primary" />

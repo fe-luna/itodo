@@ -23,6 +23,7 @@ interface IconProps {
   color?: "default" | "primary";
   size?: "small" | "middle" | "big";
   className?: string;
+  onClick?: () => void;
 }
 
 const ICONS = {
@@ -49,6 +50,7 @@ const Icon: React.FC<IconProps> = ({
   color = "default",
   size = "small",
   className,
+  onClick,
 }) => {
   const IconComponent = ICONS[name];
 
@@ -58,6 +60,7 @@ const Icon: React.FC<IconProps> = ({
         [`icon--size-${size}`]: size,
         [`icon--color-${color}`]: color,
       })}
+      onClick={onClick}
     />
   );
 };
