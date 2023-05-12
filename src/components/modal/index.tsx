@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, RefObject, MouseEvent } from "react";
+import React, { useEffect, useRef, RefObject } from "react";
 import "./style.scss";
 
 interface Props {
@@ -6,8 +6,17 @@ interface Props {
   onClose: () => void;
   onOk?: () => void;
   children?: any;
+  okText?: string;
+  cancelText?: string;
 }
-const Modal: React.FC<Props> = ({ isOpen, onClose, onOk, children }) => {
+const Modal: React.FC<Props> = ({
+  isOpen,
+  onClose,
+  onOk,
+  children,
+  okText = "完成",
+  cancelText = "取消",
+}) => {
   const modalRef: RefObject<HTMLDivElement> = useRef(null);
   useEffect(() => {
     const handleOutsideClick = (event: any) => {
@@ -29,8 +38,8 @@ const Modal: React.FC<Props> = ({ isOpen, onClose, onOk, children }) => {
   return (
     <div className="modal" ref={modalRef}>
       <div className="modal--content">{children}</div>
-      <button onClick={onOk}>添加任务</button>
-      <button onClick={onClose}>取消</button>
+      <button onClick={onOk}>{okText}</button>
+      <button onClick={onClose}>{cancelText}</button>
     </div>
   );
 };

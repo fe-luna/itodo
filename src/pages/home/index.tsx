@@ -28,16 +28,6 @@ function Home() {
     <div className="home">
       <Header />
       <CreateTodo />
-      <ul>
-        {todoList.map((todo: any) => (
-          <div key={todo.id}>
-            <li>{todo.createdAt}</li>
-            <button onClick={handleDeleteTodo.bind(null, todo.id)}>
-              delete
-            </button>
-          </div>
-        ))}
-      </ul>
     </div>
   );
 }

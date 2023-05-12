@@ -16,9 +16,9 @@ function CreateTodo() {
     setIsOpen(false);
   };
   const handleModalOk = () => {
-    if (formRef.current) {
-      formRef.current.submit();
-    }
+    formRef.current?.dispatchEvent(
+      new Event("submit", { cancelable: true, bubbles: true })
+    );
   };
   function handleCreateTodo(event: any) {
     event.preventDefault();
@@ -39,7 +39,13 @@ function CreateTodo() {
   return (
     <div className="createTodo">
       <Icon name="add" color="primary" onClick={handleModalOpen} />
-      <Modal isOpen={isOpen} onClose={handleModalClose} onOk={handleModalOk}>
+      <Modal
+        isOpen={isOpen}
+        onClose={handleModalClose}
+        onOk={handleModalOk}
+        okText="添加任务"
+        cancelText="取消"
+      >
         <div className="createTodo">
           <form ref={formRef} onSubmit={handleCreateTodo}>
             <label>Todo Name</label>
