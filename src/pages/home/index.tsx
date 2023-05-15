@@ -9,14 +9,12 @@ import "./style.scss";
 
 function Home() {
   const user = useUserInfo();
-  console.log("###user", user);
   const [todoList, setTodoList] = useState<Todo[]>([]);
   useEffect(() => {
     if (user) {
       const uid = user?.sub!;
       fetchTodoList(uid).then((res) => {
         setTodoList(res);
-        console.log("### todoList", res);
       });
     }
   }, [user]);
@@ -25,7 +23,6 @@ function Home() {
   const handler = () => {
     setIsShow((preState) => !preState);
   };
-
   useEffect(() => {
     emitter.on("setIsShow", handler);
     return () => emitter.off("setIsShow", handler);
