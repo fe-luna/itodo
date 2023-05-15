@@ -7,6 +7,7 @@ import { API, graphqlOperation } from "aws-amplify";
 import { listTodos } from "../graphql/queries";
 
 export interface Todo {
+  id: any;
   uid: String;
   name: String;
   description: String;

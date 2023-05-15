@@ -3,6 +3,7 @@ import { withAuthenticator } from "@aws-amplify/ui-react";
 import Icon from "../../icons";
 import SearchBox from "../../components/search-box";
 import CreateTodo from "../create-todo";
+import emitter from "../../utils/emitter";
 import "./style.scss";
 
 const Header = () => {
@@ -10,11 +11,14 @@ const Header = () => {
   const onSearchQueryChange = (e: any) => {
     setSearchQuery(e.target.value);
   };
+  const handleMenuShow = () => {
+    emitter.emit("setIsShow");
+  };
 
   return (
     <div className="header">
       <div className="header-left">
-        <Icon name="menu" color="primary" />
+        <Icon name="menu" color="primary" onClick={handleMenuShow} />
         <Icon name="home" color="primary" />
         <SearchBox
           searchQuery={searchQuery}

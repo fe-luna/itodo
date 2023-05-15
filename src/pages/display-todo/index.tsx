@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Todo, fetchTodoList, deleteTodo } from "../../services/todo";
+import TodoItem from "../todo-item";
+import "./style.scss";
 interface Props {
   todoList: Todo[];
 }
 const DisplayTodo: React.FC<Props> = ({ todoList }) => {
   return (
-    <ul>
+    <div className="display-todo">
       {todoList.map((todo: Todo) => (
-        <li>{todo.name}</li>
+        <TodoItem todo={todo} key={todo.id} />
       ))}
-    </ul>
+    </div>
   );
 };
 

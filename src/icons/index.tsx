@@ -16,6 +16,7 @@ import { ReactComponent as StarIcon } from "./assets/star.svg";
 import { ReactComponent as UpgradeIcon } from "./assets/theme.svg";
 import { ReactComponent as DownloadIcon } from "./assets/downapp.svg";
 import { ReactComponent as SignoutIcon } from "./assets/signout.svg";
+import { ReactComponent as CheckMark } from "./assets/checkmark.svg";
 import "./style.scss";
 // Import additional icon files here
 interface IconProps {
@@ -43,6 +44,7 @@ const ICONS = {
   upgrade: UpgradeIcon,
   download: DownloadIcon,
   signout: SignoutIcon,
+  check: CheckMark,
 };
 
 const Icon: React.FC<IconProps> = ({

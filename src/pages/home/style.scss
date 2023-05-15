@@ -1,15 +1,11 @@
-
 .home {
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
 }
-.view-test {
-    background-color: black;
-    
-}
-.text-field-test {
-    border: 1px solid black;
+.home-content {
+  display: flex;
+  flex: 1;
 }

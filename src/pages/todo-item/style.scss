@@ -1,0 +1,40 @@
+.todoItem {
+  border-bottom: 1px solid black;
+  width: 100%;
+}
+
+.todoItem-checkbox {
+  appearance: none; /* disable default styles */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 50%; /* make the checkbox round */
+  border: 1px solid black; /* add a border to the checkbox */
+  width: 16px; /* set the width and height of the checkbox */
+  height: 16px;
+  margin-right: 10px;
+  &:hover {
+    cursor: pointer;
+    background-color: aqua;
+  }
+}
+.todoItem--name-box {
+  display: flex;
+  align-items: center;
+}
+.todoItem--name-value {
+  display: flex;
+  align-items: center;
+  position: relative;
+  &:hover {
+    input {
+      background-color: aqua;
+    }
+    .todoItem-checkmark {
+      opacity: 1;
+    }
+  }
+}
+.todoItem-checkmark {
+  position: absolute;
+  opacity: 0;
+}
