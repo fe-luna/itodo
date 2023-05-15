@@ -42,7 +42,7 @@ export async function deleteTodo(id: String) {
       },
     },
   });
-  console.log("## successful delete");
+  console.log("## successful delete id is", id);
 }
 
 export async function updateTodo(data: any) {

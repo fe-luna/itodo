@@ -1,4 +1,21 @@
-.display-todo {
+.display--todo {
   flex: 1;
-  padding: 20px 50px;
+  padding: 20px 70px;
+}
+.display--todo-date {
+  display: flex;
+  align-items: center;
+}
+
+h1 {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 25px;
+}
+
+small {
+  margin-left: 12px;
+  color: grey;
+  font-size: 12px;
+  font-weight: 400;
 }

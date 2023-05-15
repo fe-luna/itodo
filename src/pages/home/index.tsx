@@ -9,23 +9,18 @@ import "./style.scss";
 
 function Home() {
   const user = useUserInfo();
+  console.log("###user", user);
   const [todoList, setTodoList] = useState<Todo[]>([]);
   useEffect(() => {
-    const uid = user?.sub!;
-    fetchTodoList(uid).then((res) => {
-      setTodoList(res);
-    });
-  }, [user]);
-
-  async function handleDeleteTodo(id: String) {
-    const uid = user?.sub!;
-    deleteTodo(id).then(() => {
+    if (user) {
+      const uid = user?.sub!;
       fetchTodoList(uid).then((res) => {
         setTodoList(res);
+        console.log("### todoList", res);
       });
-    });
-    console.log("## successful delete");
-  }
+    }
+  }, [user]);
+
   const [isShow, setIsShow] = useState(false);
   const handler = () => {
     setIsShow((preState) => !preState);
@@ -35,12 +30,21 @@ function Home() {
     emitter.on("setIsShow", handler);
     return () => emitter.off("setIsShow", handler);
   }, []);
+
+  const handleDeleteTodo = (id: String) => {
+    deleteTodo(id).then(() => {
+      const uid = user?.sub!;
+      fetchTodoList(uid).then((res) => {
+        setTodoList(res);
+      });
+    });
+  };
   return (
     <div className="home">
       <Header />
-      <div className="home-content">
+      <div className="home__content">
         <SideBar isShow={isShow} />
-        <DisplayTodo todoList={todoList} />
+        <DisplayTodo todoList={todoList} onDeleteTodo={handleDeleteTodo} />
       </div>
     </div>
   );
