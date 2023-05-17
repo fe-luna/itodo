@@ -1,6 +1,40 @@
-.createTodo {
+.create-todo {
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
+}
+.create-todo__form {
+  padding: 20px;
+}
+.create-todo__form-name {
+  input {
+    border: none;
+    outline: none;
+    &::placeholder {
+      color: #b2b2b2;
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
+}
+
+.create-todo__form-desc {
+  margin-top: 5px;
+  input {
+    border: none;
+    outline: none;
+    &::placeholder {
+      font-size: 13px;
+    }
+  }
+}
+
+.create-todo__form-tag {
+  display: flex;
+  padding: 10px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.create-todo__form-tag-more {
+  height: 3px;
+  width: 16px;
 }

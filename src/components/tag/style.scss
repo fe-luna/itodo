@@ -1,0 +1,33 @@
+.tag {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding-inline: 6px;
+  height: 28px;
+  margin-right: 10px;
+  &:hover {
+    background-color: #eee;
+    cursor: pointer;
+  }
+}
+.tag__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tag__title--size {
+  font-size: 14px;
+}
+
+.tag__title--color-green {
+  color: #058527;
+}
+.tag__title--color-default {
+  color: grey;
+}
+.tag__title--color-primary {
+  color: white;
+}

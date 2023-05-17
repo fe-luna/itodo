@@ -1,0 +1,20 @@
+.mailbox {
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px;
+  min-width: 68px;
+  &:hover {
+    background-color: #eee;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+}
+
+.mailbox__text {
+  font-size: 15px;
+  color: #666;
+  margin-left: 5px;
+  margin-right: 5px;
+}

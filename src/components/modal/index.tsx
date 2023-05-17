@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, RefObject } from "react";
+import cx from "classnames";
 import "./style.scss";
 
 interface Props {
@@ -8,6 +9,8 @@ interface Props {
   children?: any;
   okText?: string;
   cancelText?: string;
+  footerLeft?: any;
+  isNameEmpty?: boolean;
 }
 const Modal: React.FC<Props> = ({
   isOpen,
@@ -16,6 +19,8 @@ const Modal: React.FC<Props> = ({
   children,
   okText = "完成",
   cancelText = "取消",
+  footerLeft,
+  isNameEmpty,
 }) => {
   const modalRef: RefObject<HTMLDivElement> = useRef(null);
   useEffect(() => {
@@ -32,14 +37,42 @@ const Modal: React.FC<Props> = ({
       document.removeEventListener("mousedown", handleOutsideClick);
     };
   }, [isOpen, onClose]);
+
+  const onOkClass = isNameEmpty
+    ? "modal__footer-buttons--state-ok-empty"
+    : "modal__footer-buttons--state-ok";
+
   if (!isOpen) {
     return null;
   }
   return (
     <div className="modal" ref={modalRef}>
-      <div className="modal--content">{children}</div>
-      <button onClick={onOk}>{okText}</button>
-      <button onClick={onClose}>{cancelText}</button>
+      <div className="modal__content">{children}</div>
+      <div className="modal__footer">
+        <div className="modal__footer-left">{footerLeft}</div>
+        <div className="modal__footer-buttons">
+          <button
+            onClick={onClose}
+            className={cx({
+              [`modal__footer-buttons`]: true,
+              [`modal__footer-buttons--state-cancel`]: true,
+            })}
+          >
+            {cancelText}
+          </button>
+          <button
+            onClick={onOk}
+            className={cx({
+              [`modal__footer-buttons`]: true,
+              [`modal__footer-buttons--state-ok-empty`]: isNameEmpty,
+              [`modal__footer-buttons--state-ok`]: !isNameEmpty,
+            })}
+            disabled={isNameEmpty}
+          >
+            {okText}
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

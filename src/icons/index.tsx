@@ -17,13 +17,22 @@ import { ReactComponent as UpgradeIcon } from "./assets/theme.svg";
 import { ReactComponent as DownloadIcon } from "./assets/downapp.svg";
 import { ReactComponent as SignoutIcon } from "./assets/signout.svg";
 import { ReactComponent as CheckMark } from "./assets/checkmark.svg";
+import { ReactComponent as MoreIcon } from "./assets/more.svg";
+import { ReactComponent as PriorityIcon } from "./assets/priority.svg";
+import { ReactComponent as TodayIcon } from "./assets/today.svg";
+import { ReactComponent as MailBox } from "./assets/mailBox.svg";
+import { ReactComponent as DownArrow } from "./assets/downArrow.svg";
+import { THEME } from "../components/types";
 import "./style.scss";
+
+export type IconName = keyof typeof ICONS;
+
 // Import additional icon files here
 interface IconProps {
-  name: keyof typeof ICONS;
-  color?: "default" | "primary";
-  size?: "small" | "middle" | "big";
-  className?: string;
+  name: IconName;
+  color?: THEME;
+  size?: "xsmall" | "small" | "middle" | "big";
+  className?: String;
   onClick?: () => void;
 }
 
@@ -45,6 +54,11 @@ const ICONS = {
   download: DownloadIcon,
   signout: SignoutIcon,
   check: CheckMark,
+  today: TodayIcon,
+  priority: PriorityIcon,
+  more: MoreIcon,
+  mailbox: MailBox,
+  downarrow: DownArrow,
 };
 
 const Icon: React.FC<IconProps> = ({
@@ -58,9 +72,10 @@ const Icon: React.FC<IconProps> = ({
 
   return (
     <IconComponent
-      className={cx(`${className}`, "icon--margin-right", {
+      className={cx("icon--layout", {
         [`icon--size-${size}`]: size,
         [`icon--color-${color}`]: color,
+        [`${className}`]: className,
       })}
       onClick={onClick}
     />
