@@ -7,14 +7,10 @@ import Tag from "../../components/tag";
 import MailBox from "../mailbox";
 import "./style.scss";
 function CreateTodo() {
-  const user = useUserInfo();
   const formRef = useRef<HTMLFormElement>(null);
-  const nameInputRef = useRef<HTMLInputElement>(null);
-  const [isNameEmpty, setIsNameEmpty] = useState(true);
 
   const [isOpen, setIsOpen] = useState(false);
   const handleModalOpen = () => {
-    console.log("## handleModalOpen");
     setIsOpen(true);
   };
   const handleModalClose = () => {
@@ -25,11 +21,12 @@ function CreateTodo() {
       new Event("submit", { cancelable: true, bubbles: true })
     );
   };
+
+  const user = useUserInfo();
   function handleCreateTodo(event: any) {
     event.preventDefault();
     const uid = user?.sub!;
     const form = new FormData(event.target);
-    console.log("###", form);
     const data = {
       uid,
       name: form.get("name"),
@@ -38,22 +35,25 @@ function CreateTodo() {
     createTodo(data).then(() => {
       event.target.reset();
     });
-    console.log("##create note");
   }
 
-  const [nameValue, setNameValue] = useState("");
+  const [nameValue, setNameValue] = useState();
+  const [isNameEmpty, setIsNameEmpty] = useState(true);
   const handleNameChange = (e: any) => {
     setNameValue(e.target.value);
   };
   useEffect(() => {
     if (nameValue) {
       setIsNameEmpty(false);
-      console.log("### name has value");
     } else {
       setIsNameEmpty(true);
-      console.log("### name is null");
     }
   }, [nameValue]);
+
+  const [descValue, setDescValue] = useState();
+  const handleDescChange = (e: any) => {
+    setDescValue(e.target.value);
+  };
 
   return (
     <div className="create-todo">
@@ -81,7 +81,13 @@ function CreateTodo() {
                 />
               </div>
               <div className="create-todo__form-desc">
-                <input type="text" name="description" placeholder="描述" />
+                <input
+                  type="text"
+                  name="description"
+                  placeholder="描述"
+                  value={descValue}
+                  onChange={handleDescChange}
+                />
               </div>
             </form>
           </div>
