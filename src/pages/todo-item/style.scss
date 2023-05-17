@@ -1,10 +1,21 @@
 .todo-item {
+  position: relative;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.todo-item__todo-hover {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.todo-item__content {
   border-bottom: 1px solid #f0f0f0;
   width: 100%;
   padding: 8px 0;
 }
 
-.todo-item__content {
+.todo-item__content-area {
   display: flex;
   align-items: flex-start;
 }
@@ -46,21 +57,18 @@
   height: 24px;
   opacity: 0;
 }
-
-.todo__content-todo {
-}
-.todo-item__footer {
+.todo-item__content-footer {
   display: flex;
   align-items: center;
   justify-content: flex-end;
 }
 
-.todo-item__footer-text {
+.todo-item__content-footer-text {
   font-size: 14px;
   color: grey;
   margin-right: 10px;
 }
-.todo-item__footer-icon {
+.todo-item__content-footer-icon {
   width: 14px;
   height: 14px;
   color: #246fe0;

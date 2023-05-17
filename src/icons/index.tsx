@@ -22,6 +22,10 @@ import { ReactComponent as PriorityIcon } from "./assets/priority.svg";
 import { ReactComponent as TodayIcon } from "./assets/today.svg";
 import { ReactComponent as MailBox } from "./assets/mailBox.svg";
 import { ReactComponent as DownArrow } from "./assets/downArrow.svg";
+import { ReactComponent as Comment } from "./assets/comment.svg";
+import { ReactComponent as Expiration } from "./assets/expiration.svg";
+import { ReactComponent as Edit } from "./assets/edit.svg";
+
 import { THEME } from "../components/types";
 import "./style.scss";
 
@@ -59,6 +63,9 @@ const ICONS = {
   more: MoreIcon,
   mailbox: MailBox,
   downarrow: DownArrow,
+  comment: Comment,
+  edit: Edit,
+  expiration: Expiration,
 };
 
 const Icon: React.FC<IconProps> = ({

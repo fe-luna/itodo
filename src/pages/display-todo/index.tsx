@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Todo, fetchTodoList, deleteTodo } from "../../services/todo";
+import React from "react";
+import { Todo } from "../../services/todo";
 import TodoItem from "../todo-item";
 import "./style.scss";
 interface Props {
