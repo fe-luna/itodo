@@ -24,29 +24,37 @@ export default function TodoCreateForm(props) {
   } = props;
   const initialValues = {
     uid: "",
+    todoName: "",
     type: "",
-    name: "",
+    subType: "",
     description: "",
+    dueDate: "",
   };
   const [uid, setUid] = React.useState(initialValues.uid);
+  const [todoName, setTodoName] = React.useState(initialValues.todoName);
   const [type, setType] = React.useState(initialValues.type);
-  const [name, setName] = React.useState(initialValues.name);
+  const [subType, setSubType] = React.useState(initialValues.subType);
   const [description, setDescription] = React.useState(
     initialValues.description
   );
+  const [dueDate, setDueDate] = React.useState(initialValues.dueDate);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setUid(initialValues.uid);
+    setTodoName(initialValues.todoName);
     setType(initialValues.type);
-    setName(initialValues.name);
+    setSubType(initialValues.subType);
     setDescription(initialValues.description);
+    setDueDate(initialValues.dueDate);
     setErrors({});
   };
   const validations = {
     uid: [],
+    todoName: [{ type: "Required" }],
     type: [],
-    name: [{ type: "Required" }],
+    subType: [],
     description: [],
+    dueDate: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -65,6 +73,23 @@ export default function TodoCreateForm(props) {
     setErrors((errors) => ({ ...errors, [fieldName]: validationResponse }));
     return validationResponse;
   };
+  const convertToLocal = (date) => {
+    const df = new Intl.DateTimeFormat("default", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      calendar: "iso8601",
+      numberingSystem: "latn",
+      hourCycle: "h23",
+    });
+    const parts = df.formatToParts(date).reduce((acc, part) => {
+      acc[part.type] = part.value;
+      return acc;
+    }, {});
+    return `${parts.year}-${parts.month}-${parts.day}T${parts.hour}:${parts.minute}`;
+  };
   return (
     <Grid
       as="form"
@@ -75,9 +100,11 @@ export default function TodoCreateForm(props) {
         event.preventDefault();
         let modelFields = {
           uid,
+          todoName,
           type,
-          name,
+          subType,
           description,
+          dueDate,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -133,9 +160,11 @@ export default function TodoCreateForm(props) {
           if (onChange) {
             const modelFields = {
               uid: value,
+              todoName,
               type,
-              name,
+              subType,
               description,
+              dueDate,
             };
             const result = onChange(modelFields);
             value = result?.uid ?? value;
@@ -151,6 +180,35 @@ export default function TodoCreateForm(props) {
         {...getOverrideProps(overrides, "uid")}
       ></TextField>
       <TextField
+        label="Todo name"
+        isRequired={true}
+        isReadOnly={false}
+        value={todoName}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              uid,
+              todoName: value,
+              type,
+              subType,
+              description,
+              dueDate,
+            };
+            const result = onChange(modelFields);
+            value = result?.todoName ?? value;
+          }
+          if (errors.todoName?.hasError) {
+            runValidationTasks("todoName", value);
+          }
+          setTodoName(value);
+        }}
+        onBlur={() => runValidationTasks("todoName", todoName)}
+        errorMessage={errors.todoName?.errorMessage}
+        hasError={errors.todoName?.hasError}
+        {...getOverrideProps(overrides, "todoName")}
+      ></TextField>
+      <TextField
         label="Type"
         isRequired={false}
         isReadOnly={false}
@@ -160,9 +218,11 @@ export default function TodoCreateForm(props) {
           if (onChange) {
             const modelFields = {
               uid,
+              todoName,
               type: value,
-              name,
+              subType,
               description,
+              dueDate,
             };
             const result = onChange(modelFields);
             value = result?.type ?? value;
@@ -178,31 +238,33 @@ export default function TodoCreateForm(props) {
         {...getOverrideProps(overrides, "type")}
       ></TextField>
       <TextField
-        label="Name"
-        isRequired={true}
+        label="Sub type"
+        isRequired={false}
         isReadOnly={false}
-        value={name}
+        value={subType}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
               uid,
+              todoName,
               type,
-              name: value,
+              subType: value,
               description,
+              dueDate,
             };
             const result = onChange(modelFields);
-            value = result?.name ?? value;
+            value = result?.subType ?? value;
           }
-          if (errors.name?.hasError) {
-            runValidationTasks("name", value);
+          if (errors.subType?.hasError) {
+            runValidationTasks("subType", value);
           }
-          setName(value);
+          setSubType(value);
         }}
-        onBlur={() => runValidationTasks("name", name)}
-        errorMessage={errors.name?.errorMessage}
-        hasError={errors.name?.hasError}
-        {...getOverrideProps(overrides, "name")}
+        onBlur={() => runValidationTasks("subType", subType)}
+        errorMessage={errors.subType?.errorMessage}
+        hasError={errors.subType?.hasError}
+        {...getOverrideProps(overrides, "subType")}
       ></TextField>
       <TextField
         label="Description"
@@ -214,9 +276,11 @@ export default function TodoCreateForm(props) {
           if (onChange) {
             const modelFields = {
               uid,
+              todoName,
               type,
-              name,
+              subType,
               description: value,
+              dueDate,
             };
             const result = onChange(modelFields);
             value = result?.description ?? value;
@@ -230,6 +294,37 @@ export default function TodoCreateForm(props) {
         errorMessage={errors.description?.errorMessage}
         hasError={errors.description?.hasError}
         {...getOverrideProps(overrides, "description")}
+      ></TextField>
+      <TextField
+        label="Due date"
+        isRequired={false}
+        isReadOnly={false}
+        type="datetime-local"
+        value={dueDate && convertToLocal(new Date(dueDate))}
+        onChange={(e) => {
+          let value =
+            e.target.value === "" ? "" : new Date(e.target.value).toISOString();
+          if (onChange) {
+            const modelFields = {
+              uid,
+              todoName,
+              type,
+              subType,
+              description,
+              dueDate: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.dueDate ?? value;
+          }
+          if (errors.dueDate?.hasError) {
+            runValidationTasks("dueDate", value);
+          }
+          setDueDate(value);
+        }}
+        onBlur={() => runValidationTasks("dueDate", dueDate)}
+        errorMessage={errors.dueDate?.errorMessage}
+        hasError={errors.dueDate?.hasError}
+        {...getOverrideProps(overrides, "dueDate")}
       ></TextField>
       <Flex
         justifyContent="space-between"

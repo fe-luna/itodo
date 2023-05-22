@@ -9,6 +9,7 @@ import { listTodos } from "../graphql/queries";
 export interface Todo {
   id: any;
   uid: string;
+  type: string;
   name: string;
   description: string;
 }

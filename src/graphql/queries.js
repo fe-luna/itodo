@@ -6,9 +6,11 @@ export const getTodo = /* GraphQL */ `
     getTodo(id: $id) {
       id
       uid
+      todoName
       type
-      name
+      subType
       description
+      dueDate
       createdAt
       updatedAt
     }
@@ -24,9 +26,11 @@ export const listTodos = /* GraphQL */ `
       items {
         id
         uid
+        todoName
         type
-        name
+        subType
         description
+        dueDate
         createdAt
         updatedAt
       }
@@ -34,28 +38,30 @@ export const listTodos = /* GraphQL */ `
     }
   }
 `;
-export const getNote = /* GraphQL */ `
-  query GetNote($id: ID!) {
-    getNote(id: $id) {
+export const getProject = /* GraphQL */ `
+  query GetProject($id: ID!) {
+    getProject(id: $id) {
       id
-      name
-      description
+      uid
+      proName
+      subProject
       createdAt
       updatedAt
     }
   }
 `;
-export const listNotes = /* GraphQL */ `
-  query ListNotes(
-    $filter: ModelNoteFilterInput
+export const listProjects = /* GraphQL */ `
+  query ListProjects(
+    $filter: ModelProjectFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listNotes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listProjects(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        name
-        description
+        uid
+        proName
+        subProject
         createdAt
         updatedAt
       }

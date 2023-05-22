@@ -9,9 +9,11 @@ export const createTodo = /* GraphQL */ `
     createTodo(input: $input, condition: $condition) {
       id
       uid
+      todoName
       type
-      name
+      subType
       description
+      dueDate
       createdAt
       updatedAt
     }
@@ -25,9 +27,11 @@ export const updateTodo = /* GraphQL */ `
     updateTodo(input: $input, condition: $condition) {
       id
       uid
+      todoName
       type
-      name
+      subType
       description
+      dueDate
       createdAt
       updatedAt
     }
@@ -41,51 +45,56 @@ export const deleteTodo = /* GraphQL */ `
     deleteTodo(input: $input, condition: $condition) {
       id
       uid
+      todoName
       type
-      name
+      subType
       description
+      dueDate
       createdAt
       updatedAt
     }
   }
 `;
-export const createNote = /* GraphQL */ `
-  mutation CreateNote(
-    $input: CreateNoteInput!
-    $condition: ModelNoteConditionInput
+export const createProject = /* GraphQL */ `
+  mutation CreateProject(
+    $input: CreateProjectInput!
+    $condition: ModelProjectConditionInput
   ) {
-    createNote(input: $input, condition: $condition) {
+    createProject(input: $input, condition: $condition) {
       id
-      name
-      description
+      uid
+      proName
+      subProject
       createdAt
       updatedAt
     }
   }
 `;
-export const updateNote = /* GraphQL */ `
-  mutation UpdateNote(
-    $input: UpdateNoteInput!
-    $condition: ModelNoteConditionInput
+export const updateProject = /* GraphQL */ `
+  mutation UpdateProject(
+    $input: UpdateProjectInput!
+    $condition: ModelProjectConditionInput
   ) {
-    updateNote(input: $input, condition: $condition) {
+    updateProject(input: $input, condition: $condition) {
       id
-      name
-      description
+      uid
+      proName
+      subProject
       createdAt
       updatedAt
     }
   }
 `;
-export const deleteNote = /* GraphQL */ `
-  mutation DeleteNote(
-    $input: DeleteNoteInput!
-    $condition: ModelNoteConditionInput
+export const deleteProject = /* GraphQL */ `
+  mutation DeleteProject(
+    $input: DeleteProjectInput!
+    $condition: ModelProjectConditionInput
   ) {
-    deleteNote(input: $input, condition: $condition) {
+    deleteProject(input: $input, condition: $condition) {
       id
-      name
-      description
+      uid
+      proName
+      subProject
       createdAt
       updatedAt
     }

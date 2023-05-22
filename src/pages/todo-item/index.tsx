@@ -97,6 +97,9 @@ const TodoItem: React.FC<Props> = ({ todo, onDeleteTodo }) => {
               <div className="todo-item__content-todo-desc">
                 desc: {todo.description}
               </div>
+              <div className="todo-item__content-todo-desc">
+                type: {todo.type}
+              </div>
             </div>
           </div>
           <div className="todo-item__content-footer">

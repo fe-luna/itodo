@@ -12,6 +12,7 @@ interface Props {
   footerLeft?: any;
   isNameEmpty?: boolean;
 }
+
 const Modal: React.FC<Props> = ({
   isOpen,
   onClose,
@@ -38,13 +39,10 @@ const Modal: React.FC<Props> = ({
     };
   }, [isOpen, onClose]);
 
-  const onOkClass = isNameEmpty
-    ? "modal__footer-buttons--state-ok-empty"
-    : "modal__footer-buttons--state-ok";
-
   if (!isOpen) {
     return null;
   }
+
   return (
     <div className="modal" ref={modalRef}>
       <div className="modal__content">{children}</div>

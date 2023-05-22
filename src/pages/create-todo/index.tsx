@@ -8,7 +8,6 @@ import MailBox from "../mailbox";
 import "./style.scss";
 function CreateTodo() {
   const formRef = useRef<HTMLFormElement>(null);
-
   const [isOpen, setIsOpen] = useState(false);
   const handleModalOpen = () => {
     setIsOpen(true);
@@ -20,26 +19,12 @@ function CreateTodo() {
     formRef.current?.dispatchEvent(
       new Event("submit", { cancelable: true, bubbles: true })
     );
+    setIsOpen(false);
   };
 
   const user = useUserInfo();
-  function handleCreateTodo(event: any) {
-    event.preventDefault();
-    const uid = user?.sub!;
-    const form = new FormData(event.target);
-    console.log("###", form.get("type"));
-    const data = {
-      uid,
-      name: form.get("name"),
-      description: form.get("description"),
-    };
-    createTodo(data).then(() => {
-      event.target.reset();
-    });
-  }
-
-  const [nameValue, setNameValue] = useState();
-  const [isNameEmpty, setIsNameEmpty] = useState(true);
+  const [nameValue, setNameValue] = useState<string>();
+  const [isNameEmpty, setIsNameEmpty] = useState<boolean>(true);
   const handleNameChange = (e: any) => {
     setNameValue(e.target.value);
   };
@@ -51,10 +36,28 @@ function CreateTodo() {
     }
   }, [nameValue]);
 
-  const [descValue, setDescValue] = useState();
+  const [descValue, setDescValue] = useState<string>();
   const handleDescChange = (e: any) => {
     setDescValue(e.target.value);
   };
+
+  function handleCreateTodo(event: any) {
+    event.preventDefault();
+    const uid = user?.sub!;
+    const form = new FormData(event.target);
+
+    const data = {
+      uid,
+      name: form.get("name"),
+      type: form.get("type"),
+      description: form.get("description"),
+    };
+    createTodo(data).then(() => {
+      setNameValue("");
+      setDescValue("");
+      console.log("###reset the form");
+    });
+  }
 
   return (
     <div className="create-todo">
