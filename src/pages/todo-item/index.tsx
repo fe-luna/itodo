@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Todo } from "../../services/todo";
 import { ReactComponent as CheckMark } from "./assets/test.svg";
-import { ReactComponent as MailBox } from "./assets/mailBox.svg";
 import TodoHover from "../../components/todo-hover";
+import TodoType from "../todo-type";
 import "./style.scss";
 
 interface Props {
@@ -16,11 +16,30 @@ const TodoItem: React.FC<Props> = ({ todo, onDeleteTodo }) => {
   };
   const [isHover, setIsHover] = useState(false);
   const handleMouseEnter = () => {
-    setIsHover(true);
+    if (!isEdit) {
+      setIsHover(true);
+    }
   };
   const handleMouseLeave = () => {
     setIsHover(false);
   };
+
+  const [isEdit, setIsEdit] = useState(false);
+  const handleEdit = () => {
+    setIsEdit(true);
+    setIsHover(false);
+  };
+
+  const formRef = useRef<HTMLFormElement>(null);
+  const [nameValue, setNameValue] = useState(todo.name);
+  const handleNameChange = (e: any) => {
+    setNameValue(e.target.value);
+  };
+  const [descValue, setDescValue] = useState(todo.description);
+  const handleDescChange = (e: any) => {
+    setDescValue(e.target.value);
+  };
+
   return (
     <div
       className="todo-item"
@@ -29,33 +48,63 @@ const TodoItem: React.FC<Props> = ({ todo, onDeleteTodo }) => {
     >
       {isHover ? (
         <div className="todo-item__todo-hover">
-          <TodoHover />
+          <TodoHover onEdit={handleEdit} />
         </div>
       ) : (
         ""
       )}
-
-      <div className="todo-item__content">
-        <div className="todo-item__content-area">
-          <div className="todo-item__content-check-mark" onClick={handleDelete}>
-            <CheckMark className="todo-item__content-check-mark-icon" />
-            <input
-              type="checkbox"
-              className="todo-item__content-check-mark-input"
-            />
+      {isEdit ? (
+        <div className="todo-item__edit-content">
+          <div className="todo-item__edit-content-form">
+            <form ref={formRef}>
+              <div className="todo-item__edit-content-form-name">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="任务名称"
+                  value={nameValue}
+                  onChange={handleNameChange}
+                  autoFocus={isEdit}
+                />
+              </div>
+              <div className="todo-item__edit-content-form-desc">
+                <input
+                  type="text"
+                  name="description"
+                  placeholder="描述"
+                  value={descValue}
+                  onChange={handleDescChange}
+                />
+              </div>
+            </form>
           </div>
-          <div className="todo-item__content-todo">
-            <div className="todo-item__content-todo-name">{todo.name}</div>
-            <div className="todo-item__content-todo-desc">
-              desc: {todo.description}
+        </div>
+      ) : (
+        <div className="todo-item__content">
+          <div className="todo-item__content-area">
+            <div
+              className="todo-item__content-check-mark"
+              onClick={handleDelete}
+            >
+              <CheckMark className="todo-item__content-check-mark-icon" />
+              <input
+                type="checkbox"
+                className="todo-item__content-check-mark-input"
+              />
+            </div>
+            <div className="todo-item__content-todo">
+              <div className="todo-item__content-todo-name">{todo.name}</div>
+              <div className="todo-item__content-todo-desc">
+                desc: {todo.description}
+              </div>
             </div>
           </div>
+          <div className="todo-item__content-footer">
+            <TodoType type="family" />
+            <TodoType type="family-daily" />
+          </div>
         </div>
-        <div className="todo-item__content-footer">
-          <div className="todo-item__content-footer-text">收件箱</div>
-          <MailBox className="todo-item__content-footer-icon" />
-        </div>
-      </div>
+      )}
     </div>
   );
 };

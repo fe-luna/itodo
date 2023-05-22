@@ -1,6 +1,7 @@
 type Todo @model @auth(rules: [{ allow: public }]) {
   id: ID!
   uid: String
+  type: String
   name: String!
   description: String
 }

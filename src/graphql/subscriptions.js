@@ -6,6 +6,7 @@ export const onCreateTodo = /* GraphQL */ `
     onCreateTodo(filter: $filter) {
       id
       uid
+      type
       name
       description
       createdAt
@@ -18,6 +19,7 @@ export const onUpdateTodo = /* GraphQL */ `
     onUpdateTodo(filter: $filter) {
       id
       uid
+      type
       name
       description
       createdAt
@@ -30,6 +32,7 @@ export const onDeleteTodo = /* GraphQL */ `
     onDeleteTodo(filter: $filter) {
       id
       uid
+      type
       name
       description
       createdAt

@@ -24,10 +24,12 @@ export default function TodoCreateForm(props) {
   } = props;
   const initialValues = {
     uid: "",
+    type: "",
     name: "",
     description: "",
   };
   const [uid, setUid] = React.useState(initialValues.uid);
+  const [type, setType] = React.useState(initialValues.type);
   const [name, setName] = React.useState(initialValues.name);
   const [description, setDescription] = React.useState(
     initialValues.description
@@ -35,12 +37,14 @@ export default function TodoCreateForm(props) {
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setUid(initialValues.uid);
+    setType(initialValues.type);
     setName(initialValues.name);
     setDescription(initialValues.description);
     setErrors({});
   };
   const validations = {
     uid: [],
+    type: [],
     name: [{ type: "Required" }],
     description: [],
   };
@@ -71,6 +75,7 @@ export default function TodoCreateForm(props) {
         event.preventDefault();
         let modelFields = {
           uid,
+          type,
           name,
           description,
         };
@@ -128,6 +133,7 @@ export default function TodoCreateForm(props) {
           if (onChange) {
             const modelFields = {
               uid: value,
+              type,
               name,
               description,
             };
@@ -145,6 +151,33 @@ export default function TodoCreateForm(props) {
         {...getOverrideProps(overrides, "uid")}
       ></TextField>
       <TextField
+        label="Type"
+        isRequired={false}
+        isReadOnly={false}
+        value={type}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              uid,
+              type: value,
+              name,
+              description,
+            };
+            const result = onChange(modelFields);
+            value = result?.type ?? value;
+          }
+          if (errors.type?.hasError) {
+            runValidationTasks("type", value);
+          }
+          setType(value);
+        }}
+        onBlur={() => runValidationTasks("type", type)}
+        errorMessage={errors.type?.errorMessage}
+        hasError={errors.type?.hasError}
+        {...getOverrideProps(overrides, "type")}
+      ></TextField>
+      <TextField
         label="Name"
         isRequired={true}
         isReadOnly={false}
@@ -154,6 +187,7 @@ export default function TodoCreateForm(props) {
           if (onChange) {
             const modelFields = {
               uid,
+              type,
               name: value,
               description,
             };
@@ -180,6 +214,7 @@ export default function TodoCreateForm(props) {
           if (onChange) {
             const modelFields = {
               uid,
+              type,
               name,
               description: value,
             };

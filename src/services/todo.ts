@@ -8,9 +8,9 @@ import { listTodos } from "../graphql/queries";
 
 export interface Todo {
   id: any;
-  uid: String;
-  name: String;
-  description: String;
+  uid: string;
+  name: string;
+  description: string;
 }
 
 export async function fetchTodoList(uid: string): Promise<Todo[]> {

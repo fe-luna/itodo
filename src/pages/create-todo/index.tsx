@@ -27,6 +27,7 @@ function CreateTodo() {
     event.preventDefault();
     const uid = user?.sub!;
     const form = new FormData(event.target);
+    console.log("###", form.get("type"));
     const data = {
       uid,
       name: form.get("name"),
@@ -89,6 +90,10 @@ function CreateTodo() {
                   onChange={handleDescChange}
                 />
               </div>
+              <select name="type">
+                <option value="1">1111</option>
+                <option value="2">2222</option>
+              </select>
             </form>
           </div>
           <div className="create-todo__form-tag">

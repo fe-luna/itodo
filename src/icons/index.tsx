@@ -25,6 +25,9 @@ import { ReactComponent as DownArrow } from "./assets/downArrow.svg";
 import { ReactComponent as Comment } from "./assets/comment.svg";
 import { ReactComponent as Expiration } from "./assets/expiration.svg";
 import { ReactComponent as Edit } from "./assets/edit.svg";
+import { ReactComponent as House } from "./assets/house.svg";
+import { ReactComponent as Daily } from "./assets/daily.svg";
+import { ReactComponent as Inspiration } from "./assets/inspiration.svg";
 
 import { THEME } from "../components/types";
 import "./style.scss";
@@ -66,6 +69,9 @@ const ICONS = {
   comment: Comment,
   edit: Edit,
   expiration: Expiration,
+  house: House,
+  daily: Daily,
+  inspiration: Inspiration,
 };
 
 const Icon: React.FC<IconProps> = ({

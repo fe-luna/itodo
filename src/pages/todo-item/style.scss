@@ -9,6 +9,36 @@
   top: 10px;
   right: -30px;
 }
+
+.todo-item__edit-content {
+  border: 1px solid #eee;
+  border-radius: 10px;
+}
+
+.todo-item__edit-content-form-name {
+  input {
+    border: none;
+    outline: none;
+    &::placeholder {
+      color: #b2b2b2;
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
+}
+.todo-item__edit-content-form-desc {
+  margin-top: 5px;
+  input {
+    border: none;
+    outline: none;
+    &::placeholder {
+      font-size: 13px;
+    }
+  }
+}
+.todo-item__edit-content-form {
+  padding: 20px;
+}
 .todo-item__content {
   border-bottom: 1px solid #f0f0f0;
   width: 100%;
