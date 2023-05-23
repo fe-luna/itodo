@@ -1,4 +1,5 @@
 import React from "react";
+import AddProject from "../add-project";
 import "./style.scss";
 interface Props {
   isShow: boolean;
@@ -9,8 +10,7 @@ const SideBar: React.FC<Props> = ({ isShow }) => {
   }
   return (
     <div className="side-bar">
-      <div>dfghjk</div>
-      <div>ertyui</div>
+      <AddProject />
     </div>
   );
 };

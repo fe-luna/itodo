@@ -50,6 +50,7 @@ function CreateTodo() {
       uid,
       name: form.get("name"),
       type: form.get("type"),
+      subType: form.get("subtype"),
       description: form.get("description"),
     };
     createTodo(data).then(() => {

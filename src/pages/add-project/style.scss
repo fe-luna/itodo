@@ -1,0 +1,25 @@
+.add-project {
+  width: 100%;
+  padding: 4px;
+  border-radius: 5px;
+  &:hover {
+    background-color: #eee;
+  }
+}
+
+.add-project__contents {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.add-project__contents-title {
+  flex: 1;
+}
+.add-project__contents-icon {
+  display: flex;
+  align-items: center;
+}
+.add-project__contents-icon-add {
+  margin-right: 10px;
+}

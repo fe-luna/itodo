@@ -28,6 +28,7 @@ import { ReactComponent as Edit } from "./assets/edit.svg";
 import { ReactComponent as House } from "./assets/house.svg";
 import { ReactComponent as Daily } from "./assets/daily.svg";
 import { ReactComponent as Inspiration } from "./assets/inspiration.svg";
+import { ReactComponent as DropDown } from "./assets/dropDown.svg";
 
 import { THEME } from "../components/types";
 import "./style.scss";
@@ -72,6 +73,7 @@ const ICONS = {
   house: House,
   daily: Daily,
   inspiration: Inspiration,
+  dropdown: DropDown,
 };
 
 const Icon: React.FC<IconProps> = ({
