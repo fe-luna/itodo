@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, RefObject } from "react";
+import ReactDOM from "react-dom";
 import cx from "classnames";
 import "./style.scss";
 
@@ -11,6 +12,7 @@ interface Props {
   cancelText?: string;
   footerLeft?: any;
   isNameEmpty?: boolean;
+  bodyStyle?: string;
 }
 
 const Modal: React.FC<Props> = ({
@@ -22,6 +24,7 @@ const Modal: React.FC<Props> = ({
   cancelText = "取消",
   footerLeft,
   isNameEmpty,
+  bodyStyle,
 }) => {
   const modalRef: RefObject<HTMLDivElement> = useRef(null);
   useEffect(() => {
@@ -43,8 +46,11 @@ const Modal: React.FC<Props> = ({
     return null;
   }
 
-  return (
-    <div className="modal" ref={modalRef}>
+  return ReactDOM.createPortal(
+    <div
+      className={cx({ [`modal`]: true, [`${bodyStyle}`]: bodyStyle })}
+      ref={modalRef}
+    >
       <div className="modal__content">{children}</div>
       <div className="modal__footer">
         <div className="modal__footer-left">{footerLeft}</div>
@@ -71,7 +77,8 @@ const Modal: React.FC<Props> = ({
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.getElementById("root")!
   );
 };
 
