@@ -1,11 +1,16 @@
-import React, { useState, forwardRef, ForwardRefRenderFunction } from "react";
+import React, {
+  useState,
+  useEffect,
+  ForwardRefRenderFunction,
+  forwardRef,
+} from "react";
 import { useForm } from "react-hook-form";
 import { createProject, Project } from "../../services/project";
 import useUserInfo from "../../hooks/useUserInfo";
 import "./style.scss";
 
 interface Props {
-  onClick?: () => void;
+  onClick: (isNameEmpty: boolean) => void;
 }
 
 const AddProjectForm: ForwardRefRenderFunction<HTMLFormElement, Props> = (
@@ -29,14 +34,54 @@ const AddProjectForm: ForwardRefRenderFunction<HTMLFormElement, Props> = (
       console.log("###project successfully created");
     });
   };
+
+  const [projectName, setProjectName] = useState<string>("");
+  const handleProjectName = (e: any) => {
+    setProjectName(e.target.value);
+  };
+
+  const [subProjectName, setSubProjectName] = useState<string>("");
+  const handleSubProjectName = (e: any) => {
+    setSubProjectName(e.target.value);
+  };
+
+  useEffect(() => {
+    if (!projectName) {
+      props.onClick(true);
+    } else {
+      props.onClick(false);
+    }
+  }, [projectName]);
+
   if (!user) {
     return <div>loading</div>;
   }
   return (
-    <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
-      <input defaultValue="test" {...register("name")} />
-      <input {...register("subProject", { required: true })} />
-    </form>
+    <div className="add-project-form">
+      <div className="add-project-form__header">添加项目</div>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        ref={ref}
+        className="add-project-form__fill"
+      >
+        <div>名称</div>
+        <div className="add-project-form__project">
+          <input
+            {...(register("name"), { required: true })}
+            value={projectName}
+            onChange={handleProjectName}
+          />
+        </div>
+        <div>子项目</div>
+        <div className="add-project-form__sub-project">
+          <input
+            {...register("subProject")}
+            value={subProjectName}
+            onChange={handleSubProjectName}
+          />
+        </div>
+      </form>
+    </div>
   );
 };
 

@@ -1,28 +1,8 @@
-.add-project-form {
-}
-
 .add-project-form__header {
   color: #202020;
+  font-size: 20px;
   font-weight: 700;
-  padding-left: 16px;
+  padding: 16px;
   line-height: 1em;
-}
-
-.add-project-form__input {
-  width: 100%;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-bottom: 20px;
-  label {
-    font-size: 14px;
-    margin-bottom: 7px;
-  }
-  input {
-    width: 100%;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-}
-
-.add-project-form__input-name {
+  border-bottom: 1px solid #f5f5f5;
 }

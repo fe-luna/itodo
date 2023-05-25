@@ -5,6 +5,7 @@ import AddProjectForm from "../add-project-form";
 import useUserInfo from "../../hooks/useUserInfo";
 import { fetchProjectList, Project } from "../../services/project";
 import "./style.scss";
+
 const AddProject = () => {
   const user = useUserInfo();
   const [projectList, setProjectList] = useState<Project[]>();
@@ -38,6 +39,8 @@ const AddProject = () => {
   const handleShowProjectList = () => {
     setIsProjectShow(true);
   };
+
+  const [isNameEmpty, setIsNameEmpty] = useState<boolean>(true);
 
   return (
     <div className="add-project">
@@ -73,9 +76,10 @@ const AddProject = () => {
         isOpen={isModalOpen}
         onClose={handleModalClose}
         onOk={handleModalOk}
+        isNameEmpty={isNameEmpty}
         bodyStyle="add-project__modal"
       >
-        <AddProjectForm ref={formRef} />
+        <AddProjectForm ref={formRef} onClick={setIsNameEmpty} />
       </Modal>
     </div>
   );
