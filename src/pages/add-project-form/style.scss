@@ -6,3 +6,24 @@
   line-height: 1em;
   border-bottom: 1px solid #f5f5f5;
 }
+
+.add-project-form__project {
+  padding: 0 16px;
+}
+
+.add-project-form__project-title {
+  margin-bottom: 10px;
+}
+.add-project-form__input {
+  border: 1px solid grey;
+  border-radius: 5px;
+  input {
+    border: 0;
+    outline: 0;
+    width: 100%;
+    &:focus {
+      border: 0;
+      outline: 0;
+    }
+  }
+}

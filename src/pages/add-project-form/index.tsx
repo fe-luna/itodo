@@ -64,21 +64,26 @@ const AddProjectForm: ForwardRefRenderFunction<HTMLFormElement, Props> = (
         ref={ref}
         className="add-project-form__fill"
       >
-        <div>名称</div>
         <div className="add-project-form__project">
-          <input
-            {...(register("name"), { required: true })}
-            value={projectName}
-            onChange={handleProjectName}
-          />
+          <div className="add-project-form__project-title">名称</div>
+          <div className=" add-project-form__input add-project-form__project-input">
+            <input
+              {...(register("name"), { required: true })}
+              value={projectName}
+              onChange={handleProjectName}
+            />
+          </div>
         </div>
-        <div>子项目</div>
-        <div className="add-project-form__sub-project">
-          <input
-            {...register("subProject")}
-            value={subProjectName}
-            onChange={handleSubProjectName}
-          />
+
+        <div className="add-project-form__project">
+          <div className="add-project-form__project-title">子项目</div>
+          <div className=" add-project-form__input add-project-form__sub-project-input">
+            <input
+              {...register("subProject")}
+              value={subProjectName}
+              onChange={handleSubProjectName}
+            />
+          </div>
         </div>
       </form>
     </div>
