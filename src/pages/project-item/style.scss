@@ -1,0 +1,18 @@
+.project-item {
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding: 3px;
+  &:hover {
+    background-color: #eee;
+    cursor: pointer;
+  }
+}
+.project-item__content {
+  display: flex;
+  align-items: center;
+}
+
+.project-item__content-name {
+  display: flex;
+  align-items: center;
+}

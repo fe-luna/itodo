@@ -30,6 +30,7 @@ const AddProjectForm: ForwardRefRenderFunction<HTMLFormElement, Props> = (
       proName: data.name,
       subProject: data.subProject,
     };
+    console.log("###输入的参数", submitData);
     createProject(submitData).then(() => {
       console.log("###project successfully created");
     });
@@ -67,8 +68,9 @@ const AddProjectForm: ForwardRefRenderFunction<HTMLFormElement, Props> = (
         <div className="add-project-form__project">
           <div className="add-project-form__project-title">名称</div>
           <div className=" add-project-form__input add-project-form__project-input">
+            {/* question: why {reauired: true} will lead to error */}
             <input
-              {...(register("name"), { required: true })}
+              {...register("name")}
               value={projectName}
               onChange={handleProjectName}
             />

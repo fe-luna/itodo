@@ -4,6 +4,7 @@ import Modal from "../../components/modal";
 import AddProjectForm from "../add-project-form";
 import useUserInfo from "../../hooks/useUserInfo";
 import { fetchProjectList, Project } from "../../services/project";
+import DisplayProject from "../display-project";
 import "./style.scss";
 
 const AddProject = () => {
@@ -64,13 +65,7 @@ const AddProject = () => {
         </div>
       </div>
 
-      {isProjectShow && (
-        <div>
-          {projectList?.map((project) => (
-            <div>{project.proName}</div>
-          ))}
-        </div>
-      )}
+      {isProjectShow && <DisplayProject projectList={projectList} />}
 
       <Modal
         isOpen={isModalOpen}
