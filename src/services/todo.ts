@@ -12,6 +12,7 @@ export interface Todo {
   type: string;
   name: string;
   description: string;
+  dueDate: string;
 }
 
 export async function fetchTodoList(uid: string): Promise<Todo[]> {

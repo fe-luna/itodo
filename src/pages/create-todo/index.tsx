@@ -8,6 +8,7 @@ import MailBox from "../mailbox";
 import "./style.scss";
 function CreateTodo() {
   const formRef = useRef<HTMLFormElement>(null);
+
   const [isOpen, setIsOpen] = useState(false);
   const handleModalOpen = () => {
     setIsOpen(true);
@@ -44,15 +45,18 @@ function CreateTodo() {
   function handleCreateTodo(event: any) {
     event.preventDefault();
     const uid = user?.sub!;
+    const currentTime = new Date();
     const form = new FormData(event.target);
 
     const data = {
       uid,
-      name: form.get("name"),
+      todoName: form.get("name"),
       type: form.get("type"),
       subType: form.get("subtype"),
       description: form.get("description"),
+      dueDate: currentTime.toISOString(),
     };
+    console.log("###input data", data);
     createTodo(data).then(() => {
       setNameValue("");
       setDescValue("");
