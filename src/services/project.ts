@@ -42,7 +42,6 @@ export async function deleteProject(id: String) {
       },
     },
   });
-  console.log("## successful delete id is", id);
 }
 
 export async function updateProject(data: any) {

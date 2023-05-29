@@ -15,7 +15,6 @@ const AddProject = () => {
     if (!user) {
       fetchProjectList(uid).then((res) => {
         setProjectList(res);
-        console.log("###project list is ", res);
       });
     }
   }, [user]);

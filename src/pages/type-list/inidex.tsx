@@ -8,7 +8,6 @@ const TypeList = () => {
     if (user) {
       const uid = user?.sub!;
       fetchProjectList(uid).then((res) => {
-        console.log("###projectList", res);
         setProjectList(res);
       });
     }

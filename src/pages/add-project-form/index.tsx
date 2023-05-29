@@ -30,7 +30,7 @@ const AddProjectForm: ForwardRefRenderFunction<HTMLFormElement, Props> = (
       proName: data.name,
       subProject: data.subProject,
     };
-    console.log("###输入的参数", submitData);
+
     createProject(submitData).then(() => {
       console.log("###project successfully created");
     });

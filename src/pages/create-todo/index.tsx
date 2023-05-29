@@ -56,11 +56,9 @@ function CreateTodo() {
       description: form.get("description"),
       dueDate: currentTime.toISOString(),
     };
-    console.log("###input data", data);
     createTodo(data).then(() => {
       setNameValue("");
       setDescValue("");
-      console.log("###reset the form");
     });
   }
 
