@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./style.scss";
 
 interface Item {
@@ -13,8 +14,9 @@ interface Props {
 }
 
 const Menu: React.FC<Props> = ({ items }) => {
+  const navigate = useNavigate();
   const handleRouteChange = (path: string) => {
-    console.log("###path", path);
+    navigate(`/${path}`);
   };
   return (
     <div className="Menu">

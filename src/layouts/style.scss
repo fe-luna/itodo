@@ -3,4 +3,8 @@
 }
 .layouts__content {
   height: 100%;
+  display: flex;
+}
+.layouts__content-router {
+  flex: 1;
 }

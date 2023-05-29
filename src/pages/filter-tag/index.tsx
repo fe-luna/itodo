@@ -1,7 +1,8 @@
+import "./style.scss";
 const FilterTag = () => {
   return (
-    <div>
-      <div>filter-tag</div>
+    <div className="filter-tag">
+      <div className="filter-tag__content">filter-tag</div>
     </div>
   );
 };
