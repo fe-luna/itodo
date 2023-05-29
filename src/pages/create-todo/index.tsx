@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import emitter from "../../utils/emitter";
 import { createTodo } from "../../services/todo";
 import useUserInfo from "../../hooks/useUserInfo";
 import Modal from "../../components/modal";
@@ -21,6 +22,7 @@ function CreateTodo() {
       new Event("submit", { cancelable: true, bubbles: true })
     );
     setIsOpen(false);
+    emitter.emit("");
   };
 
   const user = useUserInfo();
@@ -96,10 +98,7 @@ function CreateTodo() {
                   onChange={handleDescChange}
                 />
               </div>
-              <select name="type">
-                <option value="1">1111</option>
-                <option value="2">2222</option>
-              </select>
+              <input name="type" type="select" />
             </form>
           </div>
           <div className="create-todo__form-tag">
