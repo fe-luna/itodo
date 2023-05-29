@@ -30,6 +30,9 @@ import { ReactComponent as Daily } from "./assets/daily.svg";
 import { ReactComponent as Inspiration } from "./assets/inspiration.svg";
 import { ReactComponent as DropDown } from "./assets/dropDown.svg";
 import { ReactComponent as ProjectColor } from "./assets/projectColor.svg";
+import { ReactComponent as Preview } from "./assets/preview.svg";
+import { ReactComponent as FilterTag } from "./assets/filter&tag.svg";
+import Calendar from "../pages/calendar";
 
 import { THEME } from "../components/types";
 import "./style.scss";
@@ -76,6 +79,9 @@ const ICONS = {
   inspiration: Inspiration,
   dropdown: DropDown,
   projectcolor: ProjectColor,
+  calendar: Calendar,
+  preview: Preview,
+  filtertag: FilterTag,
 };
 
 const Icon: React.FC<IconProps> = ({

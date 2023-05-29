@@ -1,16 +1,22 @@
 import React from "react";
+import cx from "classnames";
 
 interface Props {
-  text: string;
+  className?: any;
 }
 
-const Calendar: React.FC<Props> = ({ text }) => {
+const Calendar: React.FC<Props> = ({ className }) => {
+  const currentDate = new Date();
+  const currentDay = currentDate.getDate();
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
       height="24"
-      className="ONBJEQtK++jnfUWJ3V90Dw=="
+      className={cx({
+        [`ONBJEQtK++jnfUWJ3V90Dw==`]: true,
+        [`${className}`]: className,
+      })}
       viewBox="0 0 24 24"
     >
       <g fill="currentColor" fillRule="evenodd">
@@ -30,7 +36,7 @@ const Calendar: React.FC<Props> = ({ text }) => {
           transform="translate(4 2)"
         >
           <tspan x="8" y="15" textAnchor="middle">
-            {text}
+            {currentDay}
           </tspan>
         </text>
       </g>

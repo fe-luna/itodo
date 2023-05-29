@@ -1,1 +1,7 @@
-export type THEME = "default" | "primary" | "blue" | "green";
+export type THEME =
+  | "default"
+  | "primary"
+  | "blue"
+  | "green"
+  | "purple"
+  | "orange";

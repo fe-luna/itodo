@@ -1,0 +1,31 @@
+.Menu__content {
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 5px;
+  max-width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    background-color: #eee;
+  }
+}
+.Menu__content-desc {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.Menu__content-desc-icon {
+  margin-right: 7px;
+}
+
+.Menu__content-desc-label {
+  font-size: 14px;
+}
+
+.Menu__content-length {
+  font-size: 12px;
+  color: #aaa;
+}

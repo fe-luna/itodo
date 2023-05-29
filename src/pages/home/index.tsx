@@ -1,12 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import emitter from "../../utils/emitter";
 import { Todo, fetchTodoList, deleteTodo } from "../../services/todo";
 import useUserInfo from "../../hooks/useUserInfo";
-import Header from "../header";
 import DisplayTodo from "../display-todo";
 import DisplayTodoGroup from "../display-todo-group";
-import SideBar from "../side-bar";
 import { Project, fetchProjectList } from "../../services/project";
 import "./style.scss";
 
@@ -28,15 +25,6 @@ function Home() {
     }
   }, [user]);
 
-  const [isShow, setIsShow] = useState(false);
-  const handler = () => {
-    setIsShow((preState) => !preState);
-  };
-  useEffect(() => {
-    emitter.on("setIsShow", handler);
-    return () => emitter.off("setIsShow", handler);
-  }, []);
-
   const handleDeleteTodo = (id: String) => {
     deleteTodo(id).then(() => {
       const uid = user?.sub!;
@@ -56,9 +44,7 @@ function Home() {
 
   return (
     <div className="home">
-      <Header />
       <div className="home__content">
-        <SideBar isShow={isShow} />
         {id ? (
           <DisplayTodoGroup project={currProject} todoList={showList} />
         ) : (
